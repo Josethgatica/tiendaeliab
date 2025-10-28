@@ -1,35 +1,40 @@
 import React from 'react';
 import { View, Text, ScrollView, StyleSheet } from 'react-native';
-import BotonEliminarClientes from './BotonEliminarClientes';
+import BotonEliminarPromedio from './BotonEliminarPromedio';
 
+const TablaPromedio = ({ promedio, eliminarPromedio }) => {
 
-const TablaClientes = ({ clientes, eliminarClientes }) => {
-     
     return (
         <View style={styles.container}>
-            <Text style={styles.titulo}>Tabla de Clientes</Text>
+            <Text style={styles.titulo}>Tabla de Promedio</Text>
 
             <View style={[styles.fila, styles.encabezado]}>
                 <Text style={[styles.celda, styles.textoEncabezado]}>Nombre</Text>
-                <Text style={[styles.celda, styles.textoEncabezado]}>Apellido</Text>
+                <Text style={[styles.celda, styles.textoEncabezado]}>Edad</Text>
                 <Text style={[styles.celda, styles.textoEncabezado]}>Acciones</Text>
             </View>
 
-            {/* Lista de productos */}
+            {/* Lista de promedio */}
             <ScrollView>
-                {clientes.map((item) => (
-                    <View key={item.id} style={styles.fila}>
-                        <Text style={styles.celda}>{item.nombre}</Text>
-                        <Text style={styles.celda}>{item.apellido}</Text>
-                        <View style={styles.celdaAcciones}>
-                            <BotonEliminarClientes
-                               id={item.id} eliminarClientes={eliminarClientes}
-                            />  
-                        </View>
+                {(!promedio || promedio.length === 0) ? (
+                    <View style={styles.fila}>
+                        <Text style={styles.celda}>No hay registros</Text>
                     </View>
-                ))}
+                ) : (
+                    (promedio || []).map((item) => (
+                        <View key={item.id} style={styles.fila}>
+                            <Text style={styles.celda}>{item.nombre}</Text>
+                            <Text style={styles.celda}>{item.edad}</Text>
+                            <View style={styles.celdaAcciones}>
+                                <BotonEliminarPromedio
+                                    id={item.id} eliminarPromedio={eliminarPromedio}
+                                />
+                            </View>
+                        </View>
+                    ))
+                )}
             </ScrollView>
-                 </View>
+        </View>
     );
 };
 
@@ -52,7 +57,7 @@ const styles = StyleSheet.create({
         alignItems: "center"
     },
     encabezado: {
-        backgroundColor: "#d16b18ff"
+        backgroundColor: "#d48d7bff"
     },
     celda: {
         flex: 1,
@@ -73,4 +78,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default TablaClientes;
+export default TablaPromedio;

@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Modal, Text, TouchableOpacity, View, StyleSheet } from 'react-native';
 
-const BotonEliminarProducto = ({ id, eliminarProducto }) => {
+const BotonEliminarPromedio = ({ id, eliminarPromedio }) => {
     const [Visible, setVisible] = useState(false);
 
     const confirmarEliminar = () => {
         setVisible(false);
-        eliminarProducto(id);
+        eliminarPromedio(id);
     };
 
     return (
@@ -28,7 +28,7 @@ const BotonEliminarProducto = ({ id, eliminarProducto }) => {
             >
                 <View style={styles.overlay}>
                     <View style={styles.modal}>
-                        <Text style={styles.texto}>¿Desea eliminar este producto?</Text>
+                        <Text style={styles.texto}>¿Desea eliminar este promedio?</Text>
                         <View style={styles.filaBoton}>
                             <TouchableOpacity
                                 style={[styles.botonAccion, styles.cancelar]}
@@ -114,4 +114,4 @@ backgroundColor:"#96bb2fff"
     },
 });
 
-export default BotonEliminarProducto;
+export default BotonEliminarPromedio;
